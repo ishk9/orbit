@@ -411,9 +411,9 @@ class PrimaryOpenChatGlobalAction extends OpenChatGlobalAction {
 			title: localize2('openChat', "Open Chat"),
 			keybinding: {
 				weight: KeybindingWeight.WorkbenchContrib,
-				primary: KeyMod.CtrlCmd | KeyMod.Alt | KeyCode.KeyI,
+				primary: KeyMod.CtrlCmd | KeyCode.KeyL,
 				mac: {
-					primary: KeyMod.CtrlCmd | KeyMod.WinCtrl | KeyCode.KeyI
+					primary: KeyMod.CtrlCmd | KeyCode.KeyL
 				}
 			},
 			menu: [{

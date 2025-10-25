@@ -10,7 +10,7 @@ import { ContextKeyExpr } from '../../../../platform/contextkey/common/contextke
 import { registerIcon } from '../../../../platform/theme/common/iconRegistry.js';
 import { Categories } from '../../../../platform/action/common/actionCommonCategories.js';
 import { alert } from '../../../../base/browser/ui/aria/aria.js';
-import { AuxiliaryBarMaximizedContext, AuxiliaryBarVisibleContext, IsAuxiliaryWindowContext } from '../../../common/contextkeys.js';
+import { AuxiliaryBarVisibleContext, IsAuxiliaryWindowContext } from '../../../common/contextkeys.js';
 import { ViewContainerLocation, ViewContainerLocationToString } from '../../../common/views.js';
 import { ActivityBarPosition, IWorkbenchLayoutService, LayoutSettings, Parts } from '../../../services/layout/browser/layoutService.js';
 import { IPaneCompositePartService } from '../../../services/panecomposite/browser/panecomposite.js';
@@ -20,7 +20,7 @@ import { KeyCode, KeyMod } from '../../../../base/common/keyCodes.js';
 import { SwitchCompositeViewAction } from '../compositeBarActions.js';
 import { closeIcon as panelCloseIcon } from '../panel/panelActions.js';
 
-const maximizeIcon = registerIcon('auxiliarybar-maximize', Codicon.screenFull, localize('maximizeIcon', 'Icon to maximize the secondary side bar.'));
+// const maximizeIcon = registerIcon('auxiliarybar-maximize', Codicon.screenFull, localize('maximizeIcon', 'Icon to maximize the secondary side bar.'));
 const closeIcon = registerIcon('auxiliarybar-close', panelCloseIcon, localize('closeIcon', 'Icon to close the secondary side bar.'));
 
 const auxiliaryBarRightIcon = registerIcon('auxiliarybar-right-layout-icon', Codicon.layoutSidebarRight, localize('toggleAuxiliaryIconRight', 'Icon to toggle the secondary side bar off in its right position.'));
@@ -216,66 +216,68 @@ registerAction2(class extends SwitchCompositeViewAction {
 
 // --- Maximized Mode
 
-class MaximizeAuxiliaryBar extends Action2 {
+// Removed the MaximizeAuxiliaryBar action
+// class MaximizeAuxiliaryBar extends Action2 {
 
-	static readonly ID = 'workbench.action.maximizeAuxiliaryBar';
+// 	static readonly ID = 'workbench.action.maximizeAuxiliaryBar';
 
-	constructor() {
-		super({
-			id: MaximizeAuxiliaryBar.ID,
-			title: localize2('maximizeAuxiliaryBar', 'Maximize Secondary Side Bar'),
-			tooltip: localize('maximizeAuxiliaryBarTooltip', "Maximize Secondary Side Bar Size"),
-			category: Categories.View,
-			f1: true,
-			precondition: AuxiliaryBarMaximizedContext.negate(),
-			icon: maximizeIcon,
-			menu: {
-				id: MenuId.AuxiliaryBarTitle,
-				group: 'navigation',
-				order: 1,
-				when: AuxiliaryBarMaximizedContext.negate()
-			}
-		});
-	}
+// 	constructor() {
+// 		super({
+// 			id: MaximizeAuxiliaryBar.ID,
+// 			title: localize2('maximizeAuxiliaryBar', 'Maximize Secondary Side Bar'),
+// 			tooltip: localize('maximizeAuxiliaryBarTooltip', "Maximize Secondary Side Bar Size"),
+// 			category: Categories.View,
+// 			f1: true,
+// 			precondition: AuxiliaryBarMaximizedContext.negate(),
+// 			icon: maximizeIcon,
+// 			menu: {
+// 				id: MenuId.AuxiliaryBarTitle,
+// 				group: 'navigation',
+// 				order: 1,
+// 				when: AuxiliaryBarMaximizedContext.negate()
+// 			}
+// 		});
+// 	}
 
-	run(accessor: ServicesAccessor) {
-		const layoutService = accessor.get(IWorkbenchLayoutService);
+// 	run(accessor: ServicesAccessor) {
+// 		const layoutService = accessor.get(IWorkbenchLayoutService);
 
-		layoutService.setAuxiliaryBarMaximized(true);
-	}
-}
-registerAction2(MaximizeAuxiliaryBar);
+// 		layoutService.setAuxiliaryBarMaximized(true);
+// 	}
+// }
+// registerAction2(MaximizeAuxiliaryBar);
 
-class RestoreAuxiliaryBar extends Action2 {
+// Removed the RestoreAuxiliaryBar action
+// class RestoreAuxiliaryBar extends Action2 {
 
-	static readonly ID = 'workbench.action.restoreAuxiliaryBar';
+// 	static readonly ID = 'workbench.action.restoreAuxiliaryBar';
 
-	constructor() {
-		super({
-			id: RestoreAuxiliaryBar.ID,
-			title: localize2('restoreAuxiliaryBar', 'Restore Secondary Side Bar'),
-			tooltip: localize('restoreAuxiliaryBarTooltip', "Restore Secondary Side Bar Size"),
-			category: Categories.View,
-			f1: true,
-			precondition: AuxiliaryBarMaximizedContext,
-			toggled: AuxiliaryBarMaximizedContext,
-			icon: maximizeIcon,
-			menu: {
-				id: MenuId.AuxiliaryBarTitle,
-				group: 'navigation',
-				order: 1,
-				when: AuxiliaryBarMaximizedContext
-			}
-		});
-	}
+// 	constructor() {
+// 		super({
+// 			id: RestoreAuxiliaryBar.ID,
+// 			title: localize2('restoreAuxiliaryBar', 'Restore Secondary Side Bar'),
+// 			tooltip: localize('restoreAuxiliaryBarTooltip', "Restore Secondary Side Bar Size"),
+// 			category: Categories.View,
+// 			f1: true,
+// 			precondition: AuxiliaryBarMaximizedContext,
+// 			toggled: AuxiliaryBarMaximizedContext,
+// 			icon: maximizeIcon,
+// 			menu: {
+// 				id: MenuId.AuxiliaryBarTitle,
+// 				group: 'navigation',
+// 				order: 1,
+// 				when: AuxiliaryBarMaximizedContext
+// 			}
+// 		});
+// 	}
 
-	run(accessor: ServicesAccessor) {
-		const layoutService = accessor.get(IWorkbenchLayoutService);
+// 	run(accessor: ServicesAccessor) {
+// 		const layoutService = accessor.get(IWorkbenchLayoutService);
 
-		layoutService.setAuxiliaryBarMaximized(false);
-	}
-}
-registerAction2(RestoreAuxiliaryBar);
+// 		layoutService.setAuxiliaryBarMaximized(false);
+// 	}
+// }
+// registerAction2(RestoreAuxiliaryBar);
 
 class ToggleMaximizedAuxiliaryBar extends Action2 {
 
